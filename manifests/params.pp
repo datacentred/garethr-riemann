@@ -10,6 +10,7 @@ class riemann::params {
   $host = 'localhost'
   $user = 'riemann'
   $rvm_ruby_string = undef
+  $system_user = false
 
   case $::osfamily {
     'Debian': {
