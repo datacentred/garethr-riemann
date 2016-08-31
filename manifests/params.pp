@@ -6,7 +6,7 @@ class riemann::params {
   $dash_user = 'riemann-dash'
   $net_user = 'riemann-net'
   $health_user = 'riemann-health'
-  $port = 5555
+  $port = '5555'
   $host = 'localhost'
   $user = 'riemann'
   $rvm_ruby_string = undef
