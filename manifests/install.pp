@@ -3,12 +3,6 @@ class riemann::install {
   include java
 
   case $::osfamily {
-    'Debian': {
-      exec { 'riemann-apt-get-update':
-        command => '/usr/bin/apt-get update',
-        before  => Class['java'],
-      }
-    }
     'RedHat', 'Amazon': {
       ensure_resource('package', 'daemonize', {'ensure' => 'present' })
     }
