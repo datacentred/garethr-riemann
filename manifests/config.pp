@@ -32,9 +32,17 @@ class riemann::config {
     owner  => $user,
   }
 
-  file { '/etc/puppet/riemann.yaml':
-    ensure  => present,
-    content => template('riemann/etc/puppet/riemann.yaml.erb')
+  if versioncmp($::puppetversion, '4.0.0') >= 0  {
+    file { '/etc/puppetlabs/puppet/riemann.yaml':
+      ensure  => present,
+      content => template('riemann/etc/puppet/riemann.yaml.erb')
+    } 
+  }
+  else {
+    file { '/etc/puppet/riemann.yaml':
+      ensure  => present,
+      content => template('riemann/etc/puppet/riemann.yaml.erb')
+    }
   }
 
   file { '/var/log/riemann.log':
