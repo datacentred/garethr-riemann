@@ -6,7 +6,7 @@ class riemann::dash::install {
 
   user { 'riemann-dash':
     ensure => present,
-    system => true,
+    system => $riemann::dash::system_user,
   }
 
   package { 'riemann-dash':

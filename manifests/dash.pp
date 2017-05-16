@@ -23,6 +23,7 @@ class riemann::dash(
   $port = $riemann::params::dash_port,
   $user = $riemann::params::dash_user,
   $rvm_ruby_string = $riemann::params::rvm_ruby_string,
+  $system_user = $riemann::params::system_user,
 ) inherits riemann::params {
   validate_string($host)
   validate_string($user)
