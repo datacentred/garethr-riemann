@@ -26,13 +26,17 @@ class riemann(
   $host = $riemann::params::host,
   $port = $riemann::params::port,
   $user = $riemann::params::user,
+  $system_user = $riemann::params::system_user,
+  $use_package = $riemann::params::use_package,
 ) inherits riemann::params {
 
   validate_absolute_path($config_file)
   validate_string($version, $host, $port)
+  validate_bool($use_package)
 
   class { 'riemann::install': } ->
   class { 'riemann::config': } ~>
   class { 'riemann::service': } ->
   Class['riemann']
+
 }

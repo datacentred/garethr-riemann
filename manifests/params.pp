@@ -10,12 +10,27 @@ class riemann::params {
   $host = 'localhost'
   $user = 'riemann'
   $rvm_ruby_string = undef
+  $system_user = false
+  $use_package = false 
 
   case $::osfamily {
     'Debian': {
-      $service_provider = upstart
+      if versioncmp($::operatingsystemrelease, '8.0') >= 0 { 
+        $service_provider = 'systemd'
+      }
+      else {
+        $service_provider = 'upstart'
+      }
       $libxml_package = 'libxml2-dev'
       $libxslt_package = 'libxslt1-dev'
+    }
+    'Ubuntu': {
+      if versioncmp($::operatingsystemrelease, '15.04') >= 0 {
+        $service_provider = 'systemd'
+      }
+      else {
+        $service_provider = 'upstart'
+      }
     }
     'RedHat', 'Amazon': {
       include epel
