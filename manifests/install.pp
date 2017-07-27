@@ -60,8 +60,9 @@ class riemann::install {
     wget::fetch { 'download_riemann_package':
       source      => "https://github.com/riemann/riemann/releases/download/${riemann::version}/${_pkg_name}",
       destination => "/usr/local/src/${_pkg_name}",
-    }
-    package { 'riemann_pkg':
+    } ->
+
+    package { 'riemann':
       source => "/usr/local/src/${_pkg_name}",
       provider => $_pkg_type,
     }
